@@ -14,9 +14,12 @@
     </mat-option>
   </mat-autocomplete>
 </form>
-
+  <div *ngIf = "selectedPlace">
+    Ward data: {{selectedPlace.MSOA_areaName}}{{selectedPlace.MSOA}}
+  </div>
 <div *ngIf="data">
   <!-- {{data | json }} -->
+
 
   <ngx-charts-bar-vertical *ngIf="results[0].series" [view]="view" [results]="results[0].series" [legend]="true"
     [xAxis]="true" [showXAxisLabel]="true">

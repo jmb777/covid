@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   msoa = MSOA;
   places: PlaceName[] = LOOKUP;
   msoaName = 'xxx';
+  selectedPlace: PlaceName ;
 
 
 
@@ -74,7 +75,7 @@ export class AppComponent implements OnInit {
   }
   private _filter(value: string): string[] {
     const filterValue = this._normalizeValue(value);
-    if (value.length < 3) {return []}
+    if (value.length < 3) {return []; }
     return this.msoaNames.filter(street => this._normalizeValue(street).includes(filterValue));
   }
 
@@ -83,6 +84,7 @@ export class AppComponent implements OnInit {
   }
 
   msoaEntered(x): void {
-    console.log(x);
+    this.selectedPlace = { ...this.places.find(place => place.MSOA_areaName === x)};
+    console.log(this.selectedPlace);
   }
 }
