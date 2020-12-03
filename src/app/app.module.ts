@@ -7,10 +7,12 @@ import { MaterialModule} from './material-module';
 import { HttpClientModule} from '@angular/common/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GraphComponent } from './graph/graph.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,

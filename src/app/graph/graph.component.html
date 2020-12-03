@@ -1,0 +1,28 @@
+<div>
+  <p>graph works!</p>
+  {{placeName | json}}
+  <p>
+    {{areaType}}
+  </p>
+</div>
+<mat-selection-list #list name="list" class="fieldSelect" [(ngModel)]="selectedOptions">
+  <mat-list-option *ngFor="let field of fields" [value]="field">
+    {{field}}
+  </mat-list-option>
+</mat-selection-list>
+<button mat-raised-button (click)="onUpdate()">Update</button>
+{{selectedOptions}}
+<!-- {{multi | json}} -->
+<div *ngIf="data">
+    <!-- {{data | json }} -->
+
+
+    <!-- <ngx-charts-bar-vertical *ngIf="results[0].series" [view]="view" [results]="results[0].series" [legend]="true"
+    [xAxis]="true" [showXAxisLabel]="true">
+  </ngx-charts-bar-vertical> -->
+
+    <ngx-charts-line-chart *ngIf="multi" [view]="view" [results]="multi" [legend]="true" [xAxis]="true"
+      [showXAxisLabel]="true" [showXAxisLabel]="true" [timeline]=true>
+    </ngx-charts-line-chart>
+
+  </div>

@@ -22,12 +22,13 @@ export class PheService {
     filter.areaName = 'cambridge';
 
     const structure = new Structure();
+   
     structure.date = 'date';
     structure.areaCode = 'areaCode';
-    structure.value = 'newCasesByPublishDate';
-    structure.name = 'date';
-    // structure.cumCasesByPublishDate = 'cumCasesByPublishDate';
+
+    structure.cumCasesByPublishDate = 'cumCasesByPublishDate';
     structure.maleCases = 'maleCases';
+    structure.newCasesByPublishDate = 'newCasesByPublishDate';
     
     let endpoint = 'https://api.coronavirus.data.gov.uk/v1/data?';
 

@@ -1,35 +1,67 @@
 <button mat-raised-button (click)="onClick()">test</button>
-<form >
-  <input type="text"
-         placeholder="Search for a street"
-         [formControl]="msoaControl"
-         [matAutocomplete]="auto"
-        >
-         
-  <mat-autocomplete #auto="matAutocomplete"
-   (optionSelected) = "msoaEntered($event.option.value)">
-    <mat-option *ngFor="let street of filteredStreets | async" [value]="street"
-    >
+<form #form>
+  <input type="text" placeholder="Search for a street" [formControl]="msoaControl" [matAutocomplete]="auto">
+
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="msoaEntered($event.option.value)">
+    <mat-option *ngFor="let street of filteredStreets | async" [value]="street">
       {{street}}
     </mat-option>
   </mat-autocomplete>
+
+
+
+  <mat-selection-list #list name="list" class="fieldSelect" [(ngModel)]="selectedOptions">
+    <mat-list-option *ngFor="let field of fields" [value]="field">
+      {{field}}
+    </mat-list-option>
+  </mat-selection-list>
+
+
+
 </form>
-  <div *ngIf = "selectedPlace">
+
+{{selectedOptions | json}}
+<div *ngIf="selectedPlace">
+  <div>
     Ward data: {{selectedPlace.MSOA_areaName}}{{selectedPlace.MSOA}}
   </div>
-<div *ngIf="data">
-  <!-- {{data | json }} -->
-
-
-  <ngx-charts-bar-vertical *ngIf="results[0].series" [view]="view" [results]="results[0].series" [legend]="true"
-    [xAxis]="true" [showXAxisLabel]="true">
-  </ngx-charts-bar-vertical>
-
-  <ngx-charts-line-chart *ngIf="multi" [view]="view" [results]="multi" [legend]="true"
-    [xAxis]="true" [showXAxisLabel]="true" [showXAxisLabel]="true" [timeline]=true>
-  </ngx-charts-line-chart>
+  <div>
+    LTLA data: {{selectedPlace.LTLA_areaName}}
+  </div>
+  <div>
+    UTLA data: {{selectedPlace.UTLA_areaName}}
+  </div>
+  <div>
+    Regional data: {{selectedPlace.region_areaName}}
+  </div>
 
 </div>
+<div>
+  <app-graph areaType="LTLA" [placeName]="selectedPlace"></app-graph>
+</div>
+<div>xxxxxxxxxxxxxxxxxxxxxxxx</div>
+<div >
+  <div *ngIf="data">
+
+
+    <ngx-charts-line-chart *ngIf="multi" [view]="view" [results]="multi" [legend]="true" [xAxis]="true"
+      [showXAxisLabel]="true" [showXAxisLabel]="true" [timeline]=true>
+    </ngx-charts-line-chart>
+
+  </div>
+</div>
+<div >
+  <div *ngIf="data">
+
+
+    <ngx-charts-line-chart *ngIf="multi" [view]="view" [results]="multi" [legend]="true" [xAxis]="true"
+      [showXAxisLabel]="true" [showXAxisLabel]="true" [timeline]=true>
+    </ngx-charts-line-chart>
+
+  </div>
+</div>
+
+
 
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
