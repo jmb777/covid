@@ -29,6 +29,7 @@ export class GraphComponent implements OnInit, OnChanges {
   areaName: string;
   yScaleMax: number;
   fieldDescription = FIELDS;
+  graphData;
   constructor(private PHE: PheService) { }
 
   ngOnInit(): void {
@@ -70,6 +71,22 @@ export class GraphComponent implements OnInit, OnChanges {
       console.log(data.filter);
       // this.seriesData.series = this.data.data;
       // this.results.push(this.seriesData);
+      this.graphData = [];
+      this.fields.forEach(field => {
+        const thisSeries = new GraphSeries();
+        thisSeries.name = field;
+        this.data.data.forEach(series => {
+
+          const point = new DataPoint();
+          point.value = (series[field] == null) ? '' : series[field];
+          point.name = new Date(series.date);
+          thisSeries.series.push(point);
+
+        });
+        this.graphData.push(thisSeries);
+
+      });
+
       this.multi = [];
       this.selectedOptions.forEach(field => {
         const thisSeries = new GraphSeries();
