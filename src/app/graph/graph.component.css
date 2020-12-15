@@ -1,5 +1,16 @@
 .fieldSelect {
-    width: 200px;
+    width: 700px;
     height: 200px;
-    overflow: auto;
+    /* overflow: auto; */
+    border-style: solid;
+    border-width: thin;
+    overflow-y: scroll;
+}
+.listItem {
+    /* height: 20px !important; */
+}
+
+.graphContainer {
+    height: 500px;
+    width: 700px;
 }

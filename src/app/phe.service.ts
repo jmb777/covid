@@ -13,7 +13,7 @@ export class PheService {
 
   constructor(private http: HttpClient) { }
 
-  getData(): Observable<GraphSeries[]> {
+  getData(filterString: string): Observable<GraphSeries[]> {
 
     const x = new APIData();
     console.log(JSON.stringify(x));
@@ -32,7 +32,8 @@ export class PheService {
     
     let endpoint = 'https://api.coronavirus.data.gov.uk/v1/data?';
 
-    endpoint = endpoint + 'filters=areaType=utla;areaCode=E09000012'  + '&structure=' + encodeURI(JSON.stringify(structure));
+    // endpoint = endpoint + 'filters=areaType=utla;areaCode=E09000012'  + '&structure=' + encodeURI(JSON.stringify(structure));
+    endpoint = endpoint + filterString + '&structure=' + encodeURI(JSON.stringify(structure));
     console.log(endpoint);
 
 

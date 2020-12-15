@@ -2,3 +2,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.listItem .mat-list-base .mat-list-item, .listItem .mat-list-base .mat-list-option {
+    height:20px
+}
+

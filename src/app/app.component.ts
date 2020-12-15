@@ -51,25 +51,25 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.PHE.getData().subscribe(data => {
-      this.data = data;
-      console.log(data.filter);
-      // this.seriesData.series = this.data.data;
-      // this.results.push(this.seriesData);
-      this.multi = [];
-      const thisSeries = new GraphSeries();
-      thisSeries.name = 'xxxx';
-      this.data.data.forEach(series => {
+    // this.PHE.getData().subscribe(data => {
+    //   this.data = data;
+    //   console.log(data.filter);
+    //   // this.seriesData.series = this.data.data;
+    //   // this.results.push(this.seriesData);
+    //   this.multi = [];
+    //   const thisSeries = new GraphSeries();
+    //   thisSeries.name = 'xxxx';
+    //   this.data.data.forEach(series => {
 
-        const point = new DataPoint();
-        point.value = (series.newCasesBySpecimenDate == null) ? '' : series.newCasesBySpecimenDate;
-        point.name = new Date(series.date);
-        thisSeries.series.push(point);
+    //     const point = new DataPoint();
+    //     point.value = (series.newCasesBySpecimenDate == null) ? '' : series.newCasesBySpecimenDate;
+    //     point.name = new Date(series.date);
+    //     thisSeries.series.push(point);
 
-      });
-      this.multi.push(thisSeries);
+    //   });
+    //   this.multi.push(thisSeries);
 
-    });
+    // });
     this.filteredStreets = this.msoaControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))

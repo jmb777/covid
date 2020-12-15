@@ -9,18 +9,18 @@
   </mat-autocomplete>
 
 
-
+<!-- 
   <mat-selection-list #list name="list" class="fieldSelect" [(ngModel)]="selectedOptions">
     <mat-list-option *ngFor="let field of fields" [value]="field">
       {{field}}
     </mat-list-option>
-  </mat-selection-list>
+  </mat-selection-list> -->
 
 
 
 </form>
 
-{{selectedOptions | json}}
+<!-- {{selectedOptions | json}}
 <div *ngIf="selectedPlace">
   <div>
     Ward data: {{selectedPlace.MSOA_areaName}}{{selectedPlace.MSOA}}
@@ -35,12 +35,21 @@
     Regional data: {{selectedPlace.region_areaName}}
   </div>
 
-</div>
+</div> -->
+
 <div>
   <app-graph areaType="LTLA" [placeName]="selectedPlace"></app-graph>
 </div>
-<div>xxxxxxxxxxxxxxxxxxxxxxxx</div>
-<div >
+<div>
+  <app-graph areaType="UTLA" [placeName]="selectedPlace"></app-graph>
+</div>
+<div>
+  <app-graph areaType="region" [placeName]="selectedPlace"></app-graph>
+</div>
+
+
+<!-- <div>xxxxxxxxxxxxxxxxxxxxxxxx</div> -->
+<!-- <div >
   <div *ngIf="data">
 
 
@@ -49,8 +58,8 @@
     </ngx-charts-line-chart>
 
   </div>
-</div>
-<div >
+</div> -->
+<!-- <div >
   <div *ngIf="data">
 
 
@@ -59,7 +68,7 @@
     </ngx-charts-line-chart>
 
   </div>
-</div>
+</div> -->
 
 
 
