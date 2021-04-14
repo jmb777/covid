@@ -4,6 +4,7 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "Launch Chrome",
             "request": "launch",
@@ -14,8 +15,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:4200",
+            "name": "Launch Chrome against http://192.168.1.156/",
+            "url": "http:192.168.1.156/",
             "webRoot": "${workspaceFolder}"
         }
     ]

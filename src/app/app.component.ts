@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, OnInit, ViewChild } from '@angular/core';
 
 import { PheService } from './phe.service';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -10,6 +10,7 @@ import { MSOA } from './msoa';
 import { PlaceName } from './place';
 import { LOOKUP } from './lookup_table';
 import { Structure } from './structure';
+import { GraphComponent } from './graph/graph.component';
 
 class Describer {
   static describe(instance): Array<string> {
@@ -44,11 +45,27 @@ export class AppComponent implements OnInit {
   selectedFields: string[];
   selectedOptions: string[] = [];
 
+  // @ViewChild(GraphComponent) child: GraphComponent;
+  oldTime = Date.now();
+  newTime = 0;
 
 
   constructor(private PHE: PheService) {
     // Object.assign(this, { this : this.data.data });
   }
+  // ngAfterViewChecked(): void {
+
+  //   this.newTime = Date.now();
+  //   let oldState = 'rendered';
+  //   let currentState = 'rendered';
+  //   if (this.newTime - this.oldTime > 50) {
+  //     console.log('Rendering');
+  //   } else {
+  //     console.log('Rendered');
+  //   }
+  //   this.newTime = this.oldTime;
+    
+  // }
 
   ngOnInit(): void {
     // this.PHE.getData().subscribe(data => {
@@ -82,7 +99,10 @@ export class AppComponent implements OnInit {
     this.fields = Describer.describe(s).slice(5);
     console.log(this.fields);
 
+
+
   }
+
 
   onClick(): void {
     this.multi = [];
@@ -102,7 +122,7 @@ export class AppComponent implements OnInit {
 
 
 
-    
+
   }
   private _filter(value: string): string[] {
     const filterValue = this._normalizeValue(value);

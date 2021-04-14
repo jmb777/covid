@@ -1,6 +1,6 @@
 .fieldSelect {
     width: 700px;
-    height: 200px;
+    height: 100px;
     /* overflow: auto; */
     border-style: solid;
     border-width: thin;
@@ -13,4 +13,8 @@
 .graphContainer {
     height: 500px;
     width: 700px;
+}
+.areaHeader{
+    font-size: large;
+    font-weight: bold;
 }

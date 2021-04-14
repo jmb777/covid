@@ -9,6 +9,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GraphComponent } from './graph/graph.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

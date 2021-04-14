@@ -1,4 +1,4 @@
-<button mat-raised-button (click)="onClick()">test</button>
+
 <form #form>
   <input type="text" placeholder="Search for a street" [formControl]="msoaControl" [matAutocomplete]="auto">
 
@@ -45,6 +45,9 @@
 </div>
 <div>
   <app-graph areaType="region" [placeName]="selectedPlace"></app-graph>
+</div>
+<div>
+  <app-graph areaType="nation" [placeName]="'england'"></app-graph>
 </div>
 
 

@@ -1,26 +1,24 @@
-<div>
+<div class="areaHeader">
   
   
-  <p>
+ 
     {{areaName}}
-  </p>
-  <p>
-    {{filter}}
-  </p>
+ 
+
 
 </div>
 <div class="listItem">
-  <mat-selection-list #list name="list" class="fieldSelect" [(ngModel)]="selectedOptions" (selectionChange)="onUpdate()">
+  <mat-selection-list [multiple]="false" #list name="list" class="fieldSelect" [(ngModel)]="selectedOption" (selectionChange)="onUpdate()">
     <mat-list-option *ngFor="let field of fields" [value]="field">
       {{fieldDescription[field]}}
     </mat-list-option>
   </mat-selection-list>
 </div>
 
-<!-- <button mat-raised-button (click)="onUpdate()">Update</button> -->
-{{selectedOptions}}
-{{graphData | json}}
-<div *ngIf="data" class="graphContainer">
+<button mat-raised-button (click)="test()">Update</button>
+
+<!-- {{graphData | json}} -->
+<div *ngIf="showGraph" class="graphContainer">
   <!-- {{data | json }} -->
 
 
@@ -30,7 +28,11 @@
 
   <ngx-charts-line-chart *ngIf="multi"  [results]="multi" [legend]="true" [xAxis]="true"
     [showXAxisLabel]="true"  [xAxisLabel]="'Date'"  [yAxis]="true"
-    [showYAxisLabel]="true"  [yAxisLabel]="'Number'" [timeline]=true [yScaleMax]="yScaleMax">
+    [showYAxisLabel]="true"  [yAxisLabel]="'Number'" [timeline]=true [yScaleMax]="yScaleMax" [animations]="true" >
+    
+    <ng-template #seriesTooltipTemplate let-model="model">
+     
+    </ng-template>
   </ngx-charts-line-chart>
-{{yScaleMax}}
+<!-- {{multi | json}} -->
 </div>
