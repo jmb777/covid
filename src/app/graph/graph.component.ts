@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, ViewChild, AfterViewChecked, HostListener, Output, EventEmitter } from '@angular/core';
 import { DataPoint, GraphSeries } from '../graphdata';
 import { PheService } from '../phe.service';
 import { PlaceName } from '../place';
@@ -6,6 +6,8 @@ import { Structure } from '../structure';
 import { FIELDS } from '../field_desc';
 import * as _ from 'lodash-es';
 import { dateInputsHaveChanged } from '@angular/material/datepicker/datepicker-input-base';
+import { LineChartComponent } from '@swimlane/ngx-charts';
+import { MatSliderChange } from '@angular/material/slider';
 
 class Describer {
   static describe(instance): Array<string> {
@@ -20,6 +22,7 @@ class Describer {
 })
 export class GraphComponent implements OnInit, OnChanges {
 
+  @ViewChild('chart') chart: LineChartComponent;
   @Input() placeName: PlaceName;
   @Input() areaType: string;
   fields: Array<string>;
@@ -34,7 +37,13 @@ export class GraphComponent implements OnInit, OnChanges {
   graphData;
   ageData: GraphSeries[];
   showGraph = true;
+  maxY = 0;
+  sliderValue;
+
+
   constructor(private PHE: PheService) { }
+
+
 
   ngOnInit(): void {
     const s = new Structure();
@@ -42,6 +51,7 @@ export class GraphComponent implements OnInit, OnChanges {
     this.PHE.getData(this.filter).subscribe(data => {
       this.data = data;
       console.log(data.filter);
+      this.maxY = this.getMaxY();
     });
   }
 
@@ -76,6 +86,8 @@ export class GraphComponent implements OnInit, OnChanges {
       this.PHE.getData(this.filter).subscribe(data => {
         this.data = data;
         console.log(data.filter);
+        this.maxY = this.getMaxY();
+        this.sliderValue = this.maxY;
       });
     }
 
@@ -87,6 +99,7 @@ export class GraphComponent implements OnInit, OnChanges {
     switch (this.selectedOption[0]) {
       case 'maleCases':
         this.getAgeData('maleCases');
+        this.getDailyRate();
         break;
 
       case 'femaleCases':
@@ -114,7 +127,8 @@ export class GraphComponent implements OnInit, OnChanges {
 
   }
   test(): void {
-    this.showGraph = !this.showGraph;
+    // this.showGraph = !this.showGraph;
+    console.log('x');
   }
   getGraphData(): void {
     // this.seriesData.series = this.data.data;
@@ -203,6 +217,9 @@ export class GraphComponent implements OnInit, OnChanges {
           ((Number(b.name.split(/(\D)/)[0].toString()) > Number(a.name.split(/(\D)/)[0].toString())) ? -1 : 0));
     });
 
+    this.sliderValue = this.getMaxY();
+    this.maxY = this.sliderValue;
+
   }
 
   private getDailyRate(): void {
@@ -224,6 +241,33 @@ export class GraphComponent implements OnInit, OnChanges {
       });
       graphData.series[0].value = 0;
     });
+    this.sliderValue = this.getMaxY();
+    this.maxY = this.sliderValue;
+
+  }
+
+  private select(e) {
+    console.log(e);
+  }
+  private getMaxY() {
+    let maxY = 0;
+    if (this.multi) {
+      this.multi.forEach(data => {
+        data.series.forEach(point => {
+
+          if (point.value > maxY) { maxY = point.value; }
+
+        });
+      });
+    }
+
+    return maxY;
+  }
+  onValueChange(e: MatSliderChange) {
+    console.log(e.value);
+    this.chart.yScaleMax = e.value;
+    this.chart.timelineHeight = 50 * (this.chart.getYDomain()[1] / this.maxY);
+    this.chart.update();
 
 
   }

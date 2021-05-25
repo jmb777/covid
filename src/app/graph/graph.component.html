@@ -1,14 +1,15 @@
 <div class="areaHeader">
-  
-  
- 
-    {{areaName}}
- 
+
+
+
+  {{areaName}}
+
 
 
 </div>
 <div class="listItem">
-  <mat-selection-list [multiple]="false" #list name="list" class="fieldSelect" [(ngModel)]="selectedOption" (selectionChange)="onUpdate()">
+  <mat-selection-list [multiple]="false" #list name="list" class="fieldSelect" [(ngModel)]="selectedOption"
+    (selectionChange)="onUpdate()">
     <mat-list-option *ngFor="let field of fields" [value]="field">
       {{fieldDescription[field]}}
     </mat-list-option>
@@ -26,13 +27,31 @@
     [xAxis]="true" [showXAxisLabel]="true">
   </ngx-charts-bar-vertical> -->
 
-  <ngx-charts-line-chart *ngIf="multi"  [results]="multi" [legend]="true" [xAxis]="true"
-    [showXAxisLabel]="true"  [xAxisLabel]="'Date'"  [yAxis]="true"
-    [showYAxisLabel]="true"  [yAxisLabel]="'Number'" [timeline]=true [yScaleMax]="yScaleMax" [animations]="true" >
-    
+  <ngx-charts-line-chart #chart *ngIf="multi" [results]="multi" [legend]="true" [xAxis]="true" [showXAxisLabel]="true"
+    [xAxisLabel]="'Date'" [yAxis]="true" [showYAxisLabel]="true" [yAxisLabel]="'Number'" [timeline]=true
+    [yScaleMax]="yScaleMax" [animations]="true" (select)="select($event)">
+
     <ng-template #seriesTooltipTemplate let-model="model">
-     
+
     </ng-template>
   </ngx-charts-line-chart>
-<!-- {{multi | json}} -->
+  
+  <div *ngIf="multi">
+    <h2>Y Maximum</h2>
+    <br>
+    <br>
+
+    <div class="example-label-container" [class]="example-label-vertical">
+
+      <label class="example-value-label">{{maxY}}</label>
+    </div>
+    <mat-slider class="example-margin" [disabled]="disabled" [invert]="invert" [max]="maxY" [min]="min" [step]="auto"
+      [thumbLabel]="true" [value]="sliderValue" [vertical]=true aria-labelledby="example-name-label"
+      (change)="onValueChange($event)">
+
+    </mat-slider>
+
+  </div>
+
 </div>
+{{maxY}}

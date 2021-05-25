@@ -1,0 +1,32 @@
+
+
+    <h2>Result</h2>
+    <br>
+    <br>
+
+    <div class="example-label-container" [class]="vertical ? 'example-label-vertical' : 'example-label-horizontal'">
+      
+      <label class="example-value-label">{{max}}</label>
+    </div>
+    <mat-slider
+        class="example-margin"
+        [disabled]="disabled"
+        [invert]="invert"
+        [max]="maxY"
+        [min]="min"
+        [step]="step"
+        [thumbLabel]="thumbLabel"
+        [tickInterval]="getSliderTickInterval()"
+        [(ngModel)]="value"
+        [vertical]="vertical"
+        aria-labelledby="example-name-label"
+        (change) = "onValueChange($event)"
+        >
+        
+    </mat-slider>
+
+
+
+<!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

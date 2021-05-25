@@ -8,12 +8,14 @@ import { HttpClientModule} from '@angular/common/http';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GraphComponent } from './graph/graph.component';
+import { SliderComponent } from './slider/slider.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GraphComponent
+    GraphComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { GraphComponent } from './graph/graph.component';
     FormsModule,
     NgxChartsModule,
     ReactiveFormsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
