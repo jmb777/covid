@@ -6,6 +6,7 @@ newCasesBySpecimenDate: 'New cases by specimen date',
 cumCasesBySpecimenDate: 'Cumulative cases by specimen date',
 maleCases: 'Male cases (by age)',
 femaleCases: 'Female cases (by age)',
+
 newPillarOneTestsByPublishDate: 'New pillar one tests by publish date',
 cumPillarOneTestsByPublishDate: 'Cumulative pillar one tests by publish date',
 newPillarTwoTestsByPublishDate: 'New pillar two tests by publish date',

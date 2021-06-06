@@ -39,6 +39,7 @@ export class GraphComponent implements OnInit, OnChanges {
   showGraph = true;
   maxY = 0;
   sliderValue;
+  showFields;
 
 
   constructor(private PHE: PheService) { }
@@ -48,6 +49,7 @@ export class GraphComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     const s = new Structure();
     this.fields = Describer.describe(s).slice(5);
+    
     this.PHE.getData(this.filter).subscribe(data => {
       this.data = data;
       console.log(data.filter);
@@ -104,6 +106,7 @@ export class GraphComponent implements OnInit, OnChanges {
 
       case 'femaleCases':
         this.getAgeData('femaleCases');
+        this.getDailyRate();
         break;
 
       case 'cumAdmissionsByAge':

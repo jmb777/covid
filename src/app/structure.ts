@@ -35,6 +35,7 @@ newDeaths28DaysByDeathDate: string;
 cumDeaths28DaysByDeathDate: string;
 cumDeaths28DaysByDeathDateRate: string;
 
+
 constructor() {
     this.areaType = 'areaType';
     this.areaName = 'areaName';
@@ -49,6 +50,7 @@ constructor() {
     this.cumCasesBySpecimenDate = 'cumCasesBySpecimenDate';
     this.maleCases = 'maleCases';
     this.femaleCases = 'femaleCases';
+    // this.allCases = 'allCases';
     this.newPillarOneTestsByPublishDate = 'newPillarOneTestsByPublishDate';
     this.cumPillarOneTestsByPublishDate = 'cumPillarOneTestsByPublishDate';
     this.newPillarTwoTestsByPublishDate = 'newPillarTwoTestsByPublishDate';
