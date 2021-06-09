@@ -29,4 +29,5 @@ cumDeaths28DaysByPublishDateRate: 'Rate of cumulative deaths within 28 days of p
 newDeaths28DaysByDeathDate: 'Deaths within 28 days of positive test by death date',
 cumDeaths28DaysByDeathDate: 'Cumulative deaths within 28 days of positive test by death date',
 cumDeaths28DaysByDeathDateRate: 'Rate of cumulative deaths by death date per 100k resident population',
+allCases: 'All cases by age'
 }

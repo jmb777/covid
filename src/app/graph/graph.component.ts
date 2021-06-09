@@ -49,7 +49,8 @@ export class GraphComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     const s = new Structure();
     this.fields = Describer.describe(s).slice(5);
-    
+    this.fields.splice(5, 0, 'allCases');
+  
     this.PHE.getData(this.filter).subscribe(data => {
       this.data = data;
       console.log(data.filter);
@@ -113,6 +114,11 @@ export class GraphComponent implements OnInit, OnChanges {
         this.getAgeData('cumAdmissionsByAge');
         this.getDailyRate();
         break;
+
+      case 'allCases':
+        this.getAllAgeData();
+        break;
+        
       default:
         this.getGraphData();
         break;
@@ -128,6 +134,21 @@ export class GraphComponent implements OnInit, OnChanges {
 
 
 
+  }
+  getAllAgeData() {
+    let maleMulti: GraphSeries[] = [];
+    this.getAgeData('maleCases');
+    this.getDailyRate();
+    this.multi.forEach(gS => {
+      maleMulti.push(gS);
+    });
+    this.getAgeData('femaleCases');
+    this.getDailyRate();
+    this.multi.forEach((gS, i) => {
+      gS.series.forEach((data, j) => {
+        data.value = data.value + maleMulti[i].series[j].value;
+      });
+    });
   }
   test(): void {
     // this.showGraph = !this.showGraph;
