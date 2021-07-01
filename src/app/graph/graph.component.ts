@@ -27,7 +27,7 @@ export class GraphComponent implements OnInit, OnChanges {
   @Input() areaType: string;
   fields: Array<string>;
   selectedOption = '';
-  multi: GraphSeries[];
+  multi: GraphSeries[] = [];
   data;
   view: any[] = [700, 300];
   filter: string;
@@ -40,6 +40,7 @@ export class GraphComponent implements OnInit, OnChanges {
   maxY = 0;
   sliderValue;
   showFields;
+  databaseQueried = false;
 
 
   constructor(private PHE: PheService) { }
@@ -47,7 +48,12 @@ export class GraphComponent implements OnInit, OnChanges {
 
 
   ngOnInit(): void {
-    const s = new Structure();
+   
+  }
+
+  ngOnChanges(): void {
+
+     const s = new Structure();
     this.fields = Describer.describe(s).slice(5);
     this.fields.splice(5, 0, 'allCases');
   
@@ -55,10 +61,8 @@ export class GraphComponent implements OnInit, OnChanges {
       this.data = data;
       console.log(data.filter);
       this.maxY = this.getMaxY();
+      
     });
-  }
-
-  ngOnChanges(): void {
 
     if (this.placeName) {
       switch (this.areaType) {
@@ -122,9 +126,10 @@ export class GraphComponent implements OnInit, OnChanges {
       default:
         this.getGraphData();
         break;
+        
     }
 
-
+  this.databaseQueried = true;
 
 
 
@@ -149,6 +154,8 @@ export class GraphComponent implements OnInit, OnChanges {
         data.value = data.value + maleMulti[i].series[j].value;
       });
     });
+    this.sliderValue = this.getMaxY();
+    this.maxY = this.sliderValue;
   }
   test(): void {
     // this.showGraph = !this.showGraph;
@@ -194,6 +201,8 @@ export class GraphComponent implements OnInit, OnChanges {
 
     });
     console.log('End time: ' + Date());
+    this.sliderValue = this.getMaxY();
+    this.maxY = this.sliderValue;
 
   }
   private getAgeData(cases: string): void {
@@ -294,6 +303,19 @@ export class GraphComponent implements OnInit, OnChanges {
     this.chart.update();
 
 
+  }
+  display(){
+    if(this.multi) {
+      if(this.multi.length > 0){
+        return 2;
+      }
+      else{
+        return 1;
+      }
+    }
+    else {
+      return 0;
+    }
   }
 
 }

@@ -18,10 +18,10 @@
   </mat-selection-list>
 </div>
 
-<button mat-raised-button (click)="test()">Update</button>
+
 
 <!-- {{graphData | json}} -->
-<div *ngIf="showGraph" class="graphContainer">
+<div *ngIf="databaseQueried && maxY > 0" class="graphContainer">
   <!-- {{data | json }} -->
 
 
@@ -56,4 +56,6 @@
   </div>
 
 </div>
-{{maxY}}
+<div *ngIf = "!databaseQueried">Select a parameter....</div>
+<div *ngIf = "databaseQueried && maxY === 0">No data for this parameter!</div>
+{{databaseQueried}}{{maxY}}
