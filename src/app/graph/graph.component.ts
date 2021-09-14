@@ -141,6 +141,7 @@ export class GraphComponent implements OnInit, OnChanges {
 
   }
   getAllAgeData() {
+    let x = 1;
     let maleMulti: GraphSeries[] = [];
     this.getAgeData('maleCases');
     this.getDailyRate();
